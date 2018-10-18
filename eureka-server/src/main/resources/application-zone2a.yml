@@ -1,0 +1,24 @@
+server:
+  port: 8763
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    metadata-map.zone: zone2
+  client:
+    register-with-eureka: true
+    fetch-registry: true #如果为true，启动时告警
+    service-url:
+        zone1: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+        zone2: http://localhost:8763/eureka/,http://localhost:8764/eureka/
+    region: region-east
+    availability-zones:
+      region-east: zone1,zone2
+  server:
+    #在Eureka服务器获取不到集群里对等服务器上的实例时，需要等待的时间，单位为毫秒，默认为1000 * 60 * 5
+    wait-time-in-ms-when-sync-empty: 0
+    #关闭服务保护机制
+    enable-self-preservation: false
+spring:
+  application:
+    name: eureka-server
