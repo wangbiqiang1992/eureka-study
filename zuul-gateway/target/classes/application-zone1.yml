@@ -1,8 +1,5 @@
 server:
-  port: 8081
-spring:
-  application:
-    name: eureka-client
+  port: 10001
 eureka:
   instance:
     metadata-map.zone: zone1
